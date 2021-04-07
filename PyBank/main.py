@@ -51,12 +51,13 @@ month_changes.pop(0)
 total_changes_pl = int(sum(month_changes))
 average_change = int(round((total_changes_pl / (month_count - 1)), 2))
 
-# Get the greatest increase and greatest decrease, along with date.
-# Need to add 1 to the date index because the date list is storing the previous month before the greatest increase or greatest decrease
+# Get the greatest increase and greatest decrease, along with date
+# Need to remove the first item(month) because there is no change for profit/loss.
 greatest_increase = max(month_changes)
-increase_date = date[month_changes.index(greatest_increase) + 1]
+date.pop(0)
+increase_date = date[month_changes.index(greatest_increase)]
 greatest_decrease = min(month_changes)
-decrease_date = date[month_changes.index(greatest_decrease) + 1]
+decrease_date = date[month_changes.index(greatest_decrease)]
 
 # Print out results and write to file
 with open(output_path, 'w') as textfile:
